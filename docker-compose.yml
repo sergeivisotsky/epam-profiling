@@ -1,0 +1,42 @@
+version: '3.5'
+
+services:
+
+  booking:
+    image: epam/contexts:booking-latest
+    container_name: booking
+    build:
+      context: ./booking
+      dockerfile: Dockerfile
+    ports:
+      - "8383:8383"
+      - "1313:1313"
+    environment:
+      JAVA_OPTS: '-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:1313 -Xms64m -Xmx512m'
+    links:
+      - auditor
+    depends_on:
+      - auditor
+    networks:
+      - profiling
+
+  auditor:
+    image: epam/contexts:auditor-latest
+    container_name: auditor
+    build:
+      context: ./auditor
+      dockerfile: Dockerfile
+    ports:
+      - "8384:8384"
+      - "1314:1314"
+    environment:
+      JAVA_OPTS: '-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:1314 -Xms64m -Xmx512m'
+    networks:
+      - profiling
+
+volumes:
+  vol_postgres:
+
+networks:
+  profiling:
+    driver: bridge
