@@ -1,2 +1,6 @@
 server:
   port: 8383
+
+auditor:
+  url: http://auditor:8384
+  accept-booking-uri: /api/v1/booking/accept
