@@ -13,12 +13,14 @@
     <modules>
         <module>booking</module>
         <module>auditor</module>
+        <module>common</module>
     </modules>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <spring-boot.version>2.5.5</spring-boot.version>
+        <springdoc-openapi-ui.version>1.5.6</springdoc-openapi-ui.version>
     </properties>
 
     <dependencyManagement>
@@ -29,6 +31,16 @@
                 <version>${spring-boot.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc-openapi-ui.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.profiling</groupId>
+                <artifactId>common</artifactId>
+                <version>${project.parent.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
