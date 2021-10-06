@@ -1,0 +1,3 @@
+auditor:
+  url: http://localhost:8384
+  accept-booking-uri: /api/v1/booking/accept
