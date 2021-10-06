@@ -1,5 +1,6 @@
 package com.epam.profiling.common.config;
 
+import com.epam.profiling.common.CalculationService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -7,7 +8,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @Configuration
-public class CorsConfig {
+public class CommonConfig {
+
+    @Bean
+    public CalculationService calculationService() {
+        return new CalculationService();
+    }
 
     @Bean
     public CorsFilter corsFilter() {

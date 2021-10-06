@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.epam.profiling.common.config.CorsConfig
+  com.epam.profiling.common.config.CommonConfig
