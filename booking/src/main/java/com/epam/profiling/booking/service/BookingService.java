@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class BookingService {
 
-    private static final Integer CAPACITY = 50;
+    private static final Integer CAPACITY = 10_000;
 
     private final String auditorUrl;
     private final String acceptBookingUri;
