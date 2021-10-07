@@ -19,6 +19,13 @@ public class BookingService {
 
     public Booking acceptBooking(Booking booking) {
         LOG.info("Received the following booking: {}", booking.toString());
-        return service.highCpuUsageMethod(booking);
+        return methodWhichLoadsMemory(service.highCpuUsageMethod(booking));
+    }
+
+    public Booking methodWhichLoadsMemory(Booking booking) {
+        for (int i = 0; i < 50_000; i++) {
+            new Booking(booking.getName(), booking.getFrom());
+        }
+        return booking;
     }
 }
