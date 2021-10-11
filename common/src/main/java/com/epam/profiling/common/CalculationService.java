@@ -20,6 +20,10 @@ public class CalculationService {
 
     public Booking highCpuUsageMethod(Booking booking) {
         try {
+            String encrypted = CypherUtils.encrypt("someText");
+
+            System.out.println("Perform an encryption... Encryption result is: " + encrypted);
+
             List<Callable<Booking>> executables = List.of(
                     () -> calculateCubicAtan(booking),
                     () -> calculateCubicAtan(booking),
@@ -29,6 +33,8 @@ public class CalculationService {
             return booking;
         } catch (InterruptedException e) {
             throw new RuntimeException("Tangent, Cotangent and Cubit square calculation interrupted", e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
