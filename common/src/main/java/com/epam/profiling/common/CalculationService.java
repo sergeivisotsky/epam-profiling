@@ -23,7 +23,7 @@ public class CalculationService {
                     () -> calculateCubicAtan(booking),
                     () -> calculateCubicAtan(booking));
 
-            Executors.newFixedThreadPool(3).invokeAll(executables);
+            Executors.newFixedThreadPool(7).invokeAll(executables);
             return booking;
         } catch (InterruptedException e) {
             throw new RuntimeException("Tangent, Cotangent and Cubit square calculation interrupted", e);
