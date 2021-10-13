@@ -23,6 +23,13 @@ public final class CypherUtils {
         return Base64.getEncoder().encodeToString(cipherText);
     }
 
+    public static String decrypt(String cypherText) throws Exception {
+        Cipher cipher = Cipher.getInstance(ALGORITHM);
+        cipher.init(Cipher.DECRYPT_MODE, generateKey(128), generateIv());
+        byte[] plainText = cipher.doFinal(Base64.getDecoder().decode(cypherText));
+        return new String(plainText);
+    }
+
     public static SecretKey generateKey(int n) throws NoSuchAlgorithmException {
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
         keyGenerator.init(n);

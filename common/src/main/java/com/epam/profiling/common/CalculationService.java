@@ -21,8 +21,10 @@ public class CalculationService {
     public Booking highCpuUsageMethod(Booking booking) {
         try {
             String encrypted = CypherUtils.encrypt("someText");
-
             System.out.println("Perform an encryption... Encryption result is: " + encrypted);
+
+            String decrypted = CypherUtils.decrypt(encrypted);
+            System.out.println("Performs a decryption... Decryption result is: " + decrypted);
 
             List<Callable<Booking>> executables = List.of(
                     () -> calculateCubicAtan(booking),
