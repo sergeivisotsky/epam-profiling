@@ -34,6 +34,7 @@ services:
       JAEGER_AGENT_PORT: 6831
       JAEGER_SAMPLER_TYPE: const
       JAEGER_SAMPLER_PARAM: 1
+      JAEGER_ENDPOINT: http://jaeger:14268/api/traces
     links:
       - auditor
     depends_on:
@@ -58,6 +59,7 @@ services:
       JAEGER_AGENT_PORT: 6831
       JAEGER_SAMPLER_TYPE: const
       JAEGER_SAMPLER_PARAM: 1
+      JAEGER_ENDPOINT: http://jaeger:14268/api/traces
     depends_on:
       - jaeger-agent
     networks:
