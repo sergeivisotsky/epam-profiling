@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.epam.profiling.common.CalculationService;
 import com.epam.profiling.common.dto.Booking;
+import io.jaegertracing.internal.JaegerSpan;
+import io.jaegertracing.internal.JaegerTracer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -18,24 +20,32 @@ public class BookingService {
     private final String acceptBookingUri;
     private final RestTemplate restTemplate;
     private final CalculationService calculationService;
+    private final JaegerTracer tracer;
 
     public BookingService(@Value("${auditor.url}") String auditorUrl,
                           @Value("${auditor.accept-booking-uri}") String acceptBookingUri,
                           RestTemplate restTemplate,
-                          CalculationService calculationService) {
+                          CalculationService calculationService, JaegerTracer tracer) {
         this.auditorUrl = auditorUrl;
         this.acceptBookingUri = acceptBookingUri;
         this.restTemplate = restTemplate;
         this.calculationService = calculationService;
+        this.tracer = tracer;
     }
 
     public Booking sendBooking(Booking booking) {
+        JaegerSpan span = tracer.buildSpan("send booking").start();
+
         List<Booking> bookings = new ArrayList<>(CAPACITY);
         for (int i = 0; i < CAPACITY; i++) {
             bookings.add(new Booking("someDestination", "New-York"));
+
+            span.setTag("reaching_high_cpu_usage", booking.getDestination());
+
             calculationService.highCpuUsageMethod(booking);
             postBooking(booking);
         }
+        span.finish();
         return sendBookingFromList(bookings);
     }
 
