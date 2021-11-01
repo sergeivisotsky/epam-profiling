@@ -27,6 +27,7 @@ services:
     ports:
       - "8383:8383"
       - "1313:1313"
+      - "9010:9010"
     environment:
       JAVA_OPTS: '-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:1313 -Xms64m -Xmx512m'
       JAEGER_SERVICE_NAME: booking
@@ -51,6 +52,7 @@ services:
     ports:
       - "8384:8384"
       - "1314:1314"
+      - "9011:9011"
     environment:
       JAVA_OPTS: '-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:1314 -Xms64m -Xmx512m'
       JAEGER_SERVICE_NAME: booking

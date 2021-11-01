@@ -1,6 +1,10 @@
 server:
   port: 8383
 
+spring:
+  jmx:
+    enabled: true
+
 auditor:
   url: http://auditor:8384
   accept-booking-uri: /api/v1/booking/accept

@@ -1,2 +1,6 @@
 server:
   port: 8384
+
+spring:
+  jmx:
+    enabled: true
