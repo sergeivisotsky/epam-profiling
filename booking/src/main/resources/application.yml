@@ -5,6 +5,12 @@ spring:
   jmx:
     enabled: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 auditor:
   url: http://auditor:8384
   accept-booking-uri: /api/v1/booking/accept
