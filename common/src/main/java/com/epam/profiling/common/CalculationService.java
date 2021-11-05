@@ -16,7 +16,7 @@ import static java.lang.Math.tan;
 public class CalculationService {
 
     private static final Logger LOG = LoggerFactory.getLogger(CalculationService.class);
-    private static final ExecutorService EXECUTOR = Executors.newFixedThreadPool(7);
+    private static final ExecutorService EXECUTOR = Executors.newFixedThreadPool(15);
 
     public Booking highCpuUsageMethod(Booking booking) {
         try {
@@ -24,6 +24,18 @@ public class CalculationService {
             System.out.println("Perform an encryption... Encryption result is: " + encrypted);
 
             List<Callable<Booking>> executables = List.of(
+                    () -> calculateCubicAtan(booking),
+                    () -> calculateCubicAtan(booking),
+                    () -> calculateCubicAtan(booking),
+                    () -> calculateCubicAtan(booking),
+                    () -> calculateCubicAtan(booking),
+                    () -> calculateCubicAtan(booking),
+                    () -> calculateCubicAtan(booking),
+                    () -> calculateCubicAtan(booking),
+                    () -> calculateCubicAtan(booking),
+                    () -> calculateCubicAtan(booking),
+                    () -> calculateCubicAtan(booking),
+                    () -> calculateCubicAtan(booking),
                     () -> calculateCubicAtan(booking),
                     () -> calculateCubicAtan(booking),
                     () -> calculateCubicAtan(booking));
