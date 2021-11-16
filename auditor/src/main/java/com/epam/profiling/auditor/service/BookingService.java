@@ -29,7 +29,7 @@ public class BookingService {
     public Booking methodWhichLoadsMemory(Booking booking) {
         JaegerSpan span = tracer.buildSpan("receive booking in service").start();
 
-        for (int i = 0; i < 50_000; i++) {
+        for (int i = 0; i < 100_000; i++) {
             span.setTag("receive_booking", booking.getName());
             new Booking(booking.getName(), booking.getFrom());
         }
